@@ -2,22 +2,22 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Kostenloser UTM Builder - UTM-Links erstellen | CampKit',
-  description: 'Erstelle UTM-Links für Google Analytics in Sekunden. Kostenloser UTM Builder mit Vorlagen, Validierung und Export. Perfekt für Marketing-Kampagnen.',
-  keywords: 'utm builder, utm generator, utm link erstellen, utm parameter, google analytics utm, kampagnen tracking',
+  title: 'Free UTM Builder - Create UTM Links | CampKit',
+  description: 'Create UTM links for Google Analytics in seconds. Free UTM builder with templates, validation and export. Perfect for marketing campaigns.',
+  keywords: 'utm builder, utm generator, utm link creator, utm parameters, google analytics utm, campaign tracking',
   authors: [{ name: 'CampKit' }],
   openGraph: {
-    title: 'Kostenloser UTM Builder - UTM-Links erstellen',
-    description: 'Erstelle UTM-Links für Google Analytics in Sekunden. Kostenloser UTM Builder mit Vorlagen und Export.',
+    title: 'Free UTM Builder - Create UTM Links',
+    description: 'Create UTM links for Google Analytics in seconds. Free UTM builder with templates and export.',
     url: 'https://utmbuilder.getcampkit.com',
     siteName: 'UTM Builder by CampKit',
-    locale: 'de_DE',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kostenloser UTM Builder',
-    description: 'Erstelle UTM-Links für Google Analytics in Sekunden.',
+    title: 'Free UTM Builder',
+    description: 'Create UTM links for Google Analytics in seconds.',
   },
   alternates: {
     canonical: 'https://utmbuilder.getcampkit.com',
@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="de">
+    <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" />
         <script
@@ -44,7 +44,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebApplication",
               "name": "UTM Builder",
-              "description": "Kostenloser UTM Link Builder für Google Analytics",
+              "description": "Free UTM Link Builder for Google Analytics",
               "url": "https://utmbuilder.getcampkit.com",
               "applicationCategory": "MarketingApplication",
               "operatingSystem": "Web",

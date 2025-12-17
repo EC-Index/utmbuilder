@@ -82,28 +82,28 @@ export default function Home() {
       source: template.source,
       medium: template.medium,
     }))
-    toast(`${template.name} Template angewendet`)
+    toast(`${template.name} template applied`)
   }
 
   const generateUrl = () => {
     const newErrors: Partial<UTMParams> = {}
 
     if (!params.url) {
-      newErrors.url = 'URL ist erforderlich'
+      newErrors.url = 'URL is required'
     } else if (!validateUrl(params.url)) {
-      newErrors.url = 'Bitte gib eine gültige URL ein'
+      newErrors.url = 'Please enter a valid URL'
     }
 
     if (!params.source) {
-      newErrors.source = 'Source ist erforderlich'
+      newErrors.source = 'Source is required'
     }
 
     if (!params.medium) {
-      newErrors.medium = 'Medium ist erforderlich'
+      newErrors.medium = 'Medium is required'
     }
 
     if (!params.campaign) {
-      newErrors.campaign = 'Campaign ist erforderlich'
+      newErrors.campaign = 'Campaign is required'
     }
 
     setErrors(newErrors)
@@ -143,10 +143,10 @@ export default function Home() {
     try {
       await navigator.clipboard.writeText(generatedUrl)
       setCopied(true)
-      toast('URL kopiert!')
+      toast('URL copied!')
       setTimeout(() => setCopied(false), 2000)
     } catch {
-      toast('Kopieren fehlgeschlagen')
+      toast('Copy failed')
     }
   }
 
@@ -181,9 +181,9 @@ export default function Home() {
         content: parsed.searchParams.get('utm_content') || '',
       })
       setGeneratedUrl(url)
-      toast('URL aus Verlauf geladen')
+      toast('URL loaded from history')
     } catch {
-      toast('Fehler beim Laden')
+      toast('Error loading URL')
     }
   }
 
@@ -206,7 +206,7 @@ export default function Home() {
     a.href = url
     a.download = 'utm-links.csv'
     a.click()
-    toast('CSV exportiert!')
+    toast('CSV exported!')
   }
 
   return (
@@ -220,12 +220,12 @@ export default function Home() {
           CampKit
         </a>
         <h1>UTM Builder</h1>
-        <p>Erstelle UTM-Links für Google Analytics – kostenlos</p>
+        <p>Create UTM links for Google Analytics — free</p>
       </header>
 
       {/* Templates */}
       <section className="templates-section">
-        <h3>🚀 Schnellstart-Templates</h3>
+        <h3>🚀 Quick Start Templates</h3>
         <div className="templates-grid">
           {templates.map(t => (
             <button
@@ -244,7 +244,7 @@ export default function Home() {
         {/* URL */}
         <div className="form-group">
           <label>
-            Ziel-URL <span className="required">*</span>
+            Destination URL <span className="required">*</span>
           </label>
           <input
             type="url"
@@ -261,11 +261,11 @@ export default function Home() {
           <div className="form-group">
             <label>
               utm_source <span className="required">*</span>
-              <span className="hint">Woher kommt der Traffic?</span>
+              <span className="hint">Where does traffic come from?</span>
             </label>
             <input
               type="text"
-              placeholder="z.B. google, facebook, newsletter"
+              placeholder="e.g. google, facebook, newsletter"
               value={params.source}
               onChange={e => handleChange('source', e.target.value)}
               className={errors.source ? 'error' : ''}
@@ -276,11 +276,11 @@ export default function Home() {
           <div className="form-group">
             <label>
               utm_medium <span className="required">*</span>
-              <span className="hint">Marketing-Kanal</span>
+              <span className="hint">Marketing channel</span>
             </label>
             <input
               type="text"
-              placeholder="z.B. cpc, email, social"
+              placeholder="e.g. cpc, email, social"
               value={params.medium}
               onChange={e => handleChange('medium', e.target.value)}
               className={errors.medium ? 'error' : ''}
@@ -292,11 +292,11 @@ export default function Home() {
         <div className="form-group">
           <label>
             utm_campaign <span className="required">*</span>
-            <span className="hint">Kampagnenname</span>
+            <span className="hint">Campaign name</span>
           </label>
           <input
             type="text"
-            placeholder="z.B. summer_sale_2025, product_launch"
+            placeholder="e.g. summer_sale_2025, product_launch"
             value={params.campaign}
             onChange={e => handleChange('campaign', e.target.value)}
             className={errors.campaign ? 'error' : ''}
@@ -313,7 +313,7 @@ export default function Home() {
             </label>
             <input
               type="text"
-              placeholder="z.B. marketing_tools"
+              placeholder="e.g. marketing_tools"
               value={params.term}
               onChange={e => handleChange('term', e.target.value)}
             />
@@ -322,11 +322,11 @@ export default function Home() {
           <div className="form-group">
             <label>
               utm_content
-              <span className="hint">Optional – Anzeigen-Variante</span>
+              <span className="hint">Optional – Ad variant</span>
             </label>
             <input
               type="text"
-              placeholder="z.B. banner_blue, cta_top"
+              placeholder="e.g. banner_blue, cta_top"
               value={params.content}
               onChange={e => handleChange('content', e.target.value)}
             />
@@ -336,24 +336,24 @@ export default function Home() {
         {/* Actions */}
         <div className="result-actions">
           <button className="btn btn-primary" onClick={generateUrl}>
-            ✨ UTM-Link erstellen
+            ✨ Generate UTM Link
           </button>
           <button className="btn btn-secondary" onClick={clearForm}>
-            🗑️ Zurücksetzen
+            🗑️ Reset
           </button>
         </div>
 
         {/* Result */}
         {generatedUrl && (
           <div className="result-section fade-in">
-            <h3>Dein UTM-Link</h3>
+            <h3>Your UTM Link</h3>
             <div className="result-url">{generatedUrl}</div>
             <div className="result-actions">
               <button
                 className={`btn ${copied ? 'btn-success' : 'btn-primary'}`}
                 onClick={copyToClipboard}
               >
-                {copied ? '✓ Kopiert!' : '📋 Kopieren'}
+                {copied ? '✓ Copied!' : '📋 Copy'}
               </button>
               <a
                 href={generatedUrl}
@@ -361,7 +361,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="btn btn-secondary"
               >
-                🔗 Link testen
+                🔗 Test Link
               </a>
             </div>
           </div>
@@ -372,7 +372,7 @@ export default function Home() {
       {history.length > 0 && (
         <section className="history-section">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-            <h2>📜 Verlauf</h2>
+            <h2>📜 History</h2>
             <button className="btn btn-secondary" onClick={exportHistory} style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }}>
               📥 CSV Export
             </button>
@@ -382,13 +382,13 @@ export default function Home() {
               <span className="history-url">{item.url}</span>
               <div className="history-actions">
                 <button className="history-btn" onClick={() => loadFromHistory(item.url)}>
-                  Laden
+                  Load
                 </button>
                 <button className="history-btn" onClick={() => {
                   navigator.clipboard.writeText(item.url)
-                  toast('Kopiert!')
+                  toast('Copied!')
                 }}>
-                  Kopieren
+                  Copy
                 </button>
               </div>
             </div>
@@ -398,86 +398,86 @@ export default function Home() {
 
       {/* CTA */}
       <section className="cta-section">
-        <h2>Mehr als nur ein UTM Builder?</h2>
+        <h2>Need More Than a UTM Builder?</h2>
         <p>
-          Mit CampKit verwaltest du alle deine UTM-Links an einem Ort – 
-          mit Team-Sharing, Vorlagen und Analytics.
+          With CampKit you manage all your UTM links in one place — 
+          with team sharing, templates and analytics.
         </p>
         <a href="https://getcampkit.com?utm_source=utmbuilder&utm_medium=referral&utm_campaign=cta" className="btn" target="_blank" rel="noopener">
-          CampKit kostenlos testen →
+          Try CampKit for Free →
         </a>
       </section>
 
       {/* Info */}
       <section className="info-section">
-        <h2>Was sind UTM-Parameter?</h2>
+        <h2>What Are UTM Parameters?</h2>
         <div className="info-grid">
           <div className="info-item">
             <h3>utm_source</h3>
-            <p>Identifiziert die Traffic-Quelle (z.B. google, facebook, newsletter)</p>
+            <p>Identifies the traffic source (e.g. google, facebook, newsletter)</p>
           </div>
           <div className="info-item">
             <h3>utm_medium</h3>
-            <p>Das Marketing-Medium (z.B. cpc, email, social, banner)</p>
+            <p>The marketing medium (e.g. cpc, email, social, banner)</p>
           </div>
           <div className="info-item">
             <h3>utm_campaign</h3>
-            <p>Der Name deiner Kampagne (z.B. summer_sale, product_launch)</p>
+            <p>Your campaign name (e.g. summer_sale, product_launch)</p>
           </div>
           <div className="info-item">
             <h3>utm_term</h3>
-            <p>Optional: Keywords für bezahlte Suche</p>
+            <p>Optional: Keywords for paid search</p>
           </div>
           <div className="info-item">
             <h3>utm_content</h3>
-            <p>Optional: Unterscheide ähnliche Inhalte oder Links</p>
+            <p>Optional: Differentiate similar content or links</p>
           </div>
         </div>
       </section>
 
       {/* FAQ */}
       <section className="faq-section">
-        <h2>Häufige Fragen</h2>
+        <h2>Frequently Asked Questions</h2>
         
         <div className="faq-item">
-          <h3>Warum sollte ich UTM-Parameter verwenden?</h3>
-          <p>UTM-Parameter helfen dir, genau zu verstehen, woher dein Website-Traffic kommt. Ohne sie siehst du in Google Analytics nur "Direct" oder "Referral" – mit UTMs weißt du exakt, welche Kampagne, Anzeige oder E-Mail den Besuch ausgelöst hat.</p>
+          <h3>Why should I use UTM parameters?</h3>
+          <p>UTM parameters help you understand exactly where your website traffic comes from. Without them, you only see "Direct" or "Referral" in Google Analytics – with UTMs you know exactly which campaign, ad, or email triggered the visit.</p>
         </div>
 
         <div className="faq-item">
-          <h3>Funktioniert dieser UTM Builder mit GA4?</h3>
-          <p>Ja! UTM-Parameter funktionieren automatisch mit Google Analytics 4. Die Parameter werden in GA4 unter "Traffic acquisition" und in benutzerdefinierten Reports angezeigt.</p>
+          <h3>Does this UTM builder work with GA4?</h3>
+          <p>Yes! UTM parameters work automatically with Google Analytics 4. The parameters appear in GA4 under "Traffic acquisition" and in custom reports.</p>
         </div>
 
         <div className="faq-item">
-          <h3>Welche Namenskonventionen sollte ich verwenden?</h3>
-          <p>Verwende immer Kleinbuchstaben, Unterstriche statt Leerzeichen, und sei konsistent. Beispiel: "facebook" statt "Facebook" oder "FB". Das macht die Auswertung später viel einfacher.</p>
+          <h3>What naming conventions should I use?</h3>
+          <p>Always use lowercase, underscores instead of spaces, and be consistent. Example: "facebook" instead of "Facebook" or "FB". This makes analysis much easier later.</p>
         </div>
 
         <div className="faq-item">
-          <h3>Werden meine UTM-Links gespeichert?</h3>
-          <p>Der Verlauf wird lokal in deinem Browser gespeichert (localStorage). Nichts wird an einen Server gesendet. Für Team-Sharing und zentrale Verwaltung empfehlen wir CampKit.</p>
+          <h3>Are my UTM links saved?</h3>
+          <p>History is stored locally in your browser (localStorage). Nothing is sent to a server. For team sharing and central management, we recommend CampKit.</p>
         </div>
 
         <div className="faq-item">
-          <h3>Kann ich UTM-Links für Social Media verwenden?</h3>
-          <p>Absolut! UTM-Links funktionieren überall – Social Media Posts, Bio-Links, Anzeigen, E-Mails, QR-Codes. Überall wo du einen Link platzieren kannst.</p>
+          <h3>Can I use UTM links for social media?</h3>
+          <p>Absolutely! UTM links work everywhere – social media posts, bio links, ads, emails, QR codes. Anywhere you can place a link.</p>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="footer">
         <p>
-          Ein kostenloses Tool von{' '}
+          A free tool by{' '}
           <a href="https://getcampkit.com?utm_source=utmbuilder&utm_medium=referral&utm_campaign=footer" target="_blank" rel="noopener">
             CampKit
           </a>
-          {' '}– Die UTM-Link Management Plattform
+          {' '}– The UTM Link Management Platform
         </p>
         <p style={{ marginTop: '0.5rem' }}>
-          <a href="https://getcampkit.com/impressum" target="_blank" rel="noopener">Impressum</a>
+          <a href="https://getcampkit.com/impressum" target="_blank" rel="noopener">Imprint</a>
           {' · '}
-          <a href="https://getcampkit.com/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+          <a href="https://getcampkit.com/datenschutz" target="_blank" rel="noopener">Privacy</a>
         </p>
       </footer>
 
